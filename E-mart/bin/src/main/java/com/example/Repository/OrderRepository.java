@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-@Transaction
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     // Find all orders by a specific user
@@ -18,6 +17,15 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     // Find all orders within a specific date range
     List<Order> findByOrderDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 
-    // Find orders by their status (you can implement a status field in Order entity)
+    // Find orders by their status (Assumes that Order entity has a "status" field)
     List<Order> findByStatus(String status);
+    
+    // Find orders by status and user
+    List<Order> findByUserAndStatus(User user, String status);
+    
+    // Find orders by status and date range
+    List<Order> findByStatusAndOrderDateBetween(String status, LocalDateTime startDate, LocalDateTime endDate);
+    
+    // Find orders by user and date range
+    List<Order> findByUserAndOrderDateBetween(User user, LocalDateTime startDate, LocalDateTime endDate);
 }

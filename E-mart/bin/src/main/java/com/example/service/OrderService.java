@@ -41,4 +41,7 @@ public interface OrderService {
 
     // Cancel an order
     Order cancelOrder(int orderId);
+
+    // Get a user by ID
+    User getUserById(int userId);
 }
