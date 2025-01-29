@@ -1,6 +1,8 @@
 package com.example.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class Cart {
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToOne

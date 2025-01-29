@@ -2,33 +2,49 @@ package com.example.entity;
 
 import java.util.List;
 
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
 public class User {
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
+    @NotBlank(message = "Name is required")
     private String name;
 
+    // Mobile number should be a 10-digit number
     @Column(unique = true, length = 10)
+    @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be a 10-digit number")
     private String mobileNumber;
 
+    // Email should follow the correct email format
     @Column(unique = true)
+    @Email(message = "Please provide a valid email address")
     private String email;
-
+    
+    @Column(name = "address", length = 255)
+    private String address;
+    
+    @NotBlank(message = "Password is required")
     private String password;
+
     private String creditCardInfo;
+    
     private String internetBankingInfo;
+    
     private boolean isMember;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cart> carts;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+//    private List<Order> orders;
+
 
 	public int getUserId() {
 		return userId;
@@ -94,21 +110,35 @@ public class User {
 		this.isMember = isMember;
 	}
 
-	public List<Cart> getCarts() {
-		return carts;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setCarts(List<Cart> carts) {
-		this.carts = carts;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", name=" + name + ", mobileNumber=" + mobileNumber + ", email=" + email
+				+ ", address=" + address + ", password=" + password + ", creditCardInfo=" + creditCardInfo
+				+ ", internetBankingInfo=" + internetBankingInfo + ", isMember=" + isMember + "]";
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
+	
+	
+
+//	public List<Order> getOrders() {
+//		return orders;
+//	}
+//
+//	public void setOrders(List<Order> orders) {
+//		this.orders = orders;
+//	}
+
+	
+	
+	
 
     
 }

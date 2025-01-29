@@ -1,6 +1,6 @@
 package com.example.service;
 
-import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,47 +11,63 @@ import com.example.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService{
 
+	
 	@Autowired
-	private UserRepository userRepository;
+    private UserRepository userRepository;
+	
+	
+	
+	
+
+
 	@Override
-	public User CreateUser(User user) {
-		return userRepository.save(user);
+	public User registerUser(User user) {
+	return userRepository.save(user);
 	}
 
 	@Override
-	public User getUserByID(long id) {
-		 Optional<User> user = userRepository.findById((int) id);
-		 return user.orElse(null);
+	public String loginUser(String email, String password) {
+		Optional<User> userOpt = userRepository.findByEmail(email);
+		if (userOpt.isPresent() && userOpt.get().getPassword().equals(password)) { // No password validation
+            return "Login successful";
+	    }
+	    throw new RuntimeException("Invalid email or password");
 	}
 
 	@Override
-	public List<User> getAllUser() {
-		return userRepository.findAll();
+	public User updateUser(Integer userId, User user) {
+		User existingUser = userRepository.findById(userId)
+	            .orElseThrow(() -> new RuntimeException("User not found"));
+
+	    existingUser.setName(user.getName());  // Use the passed user object
+	    existingUser.setEmail(user.getEmail());
+	    return userRepository.save(existingUser);
+
 	}
 
 	@Override
-	public void deleteUser(long id) {
-		userRepository.deleteById((int) id);
+	public void deleteUser(Integer userId) {
+		User user = userRepository.findById(userId)
+	            .orElseThrow(() -> new RuntimeException("User not found"));
+	    userRepository.delete(user);
+
+		
 	}
 
 	@Override
-	public User updateUser(long id, User userDetails) {
-		 Optional<User> optionalUser = userRepository.findById((int) id); // Assuming ID is Integer, change accordingly
-	        
-	        if (optionalUser.isPresent()) {
-	            User user = optionalUser.get();
-	            
-	            // Update user fields with new details (example, update name, email, etc.)
-	            user.setName(userDetails.getName());
-	            user.setEmail(userDetails.getEmail());
-	            
-	            
-	            // Save the updated user
-	            return userRepository.save(user);
-	        } else {
-	            // User not found, return null or handle exception as needed
-	            return null; 
-	        }
+	public User getUserDetails(Integer userId) {
+		 return userRepository.findById(userId)
+		            .orElseThrow(() -> new RuntimeException("User not found"));
+
 	}
 
+	@Override
+	public User getUserCart(Integer userId) {
+		return userRepository.findById(userId)
+	            .orElseThrow(() -> new RuntimeException("User not found"));
+
+	}
+	
+	
+	
 }

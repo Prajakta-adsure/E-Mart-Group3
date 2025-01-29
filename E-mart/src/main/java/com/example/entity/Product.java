@@ -20,15 +20,26 @@ public class Product {
     private double price;
     private int stock;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryId", nullable = false)
     private Categories category;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Cart> carts;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     private List<OrderDetails> orderDetails;
+    
+ // Many-to-One relationship with Brands
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id", nullable = true)
+    private Brand brand;
+
+    // Many-to-One relationship with SubSubcategories
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sub_subcategory_id", nullable = true)
+    private SubSubcategory subSubcategory;
+    
 
 	public int getProductId() {
 		return productId;
@@ -94,7 +105,23 @@ public class Product {
 		this.orderDetails = orderDetails;
 	}
 
-    // Getters and Setters
+	public Brand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+	}
+
+	public SubSubcategory getSubSubcategory() {
+		return subSubcategory;
+	}
+
+	public void setSubSubcategory(SubSubcategory subSubcategory) {
+		this.subSubcategory = subSubcategory;
+	}
+
+   
     
     
 }
