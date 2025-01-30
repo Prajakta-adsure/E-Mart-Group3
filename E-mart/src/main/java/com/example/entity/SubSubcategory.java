@@ -22,7 +22,7 @@ public class SubSubcategory {
     @Column(name = "sub_subcategory_name", nullable = false)
     private String name;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "subcategory_id", nullable = false)
     private Subcategories subcategory;
 

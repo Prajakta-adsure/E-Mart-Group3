@@ -15,11 +15,11 @@ public class Categories {
 
     private String categoryName;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<Product> products;
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<Subcategories> subcategories;
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+//    private List<Product> products;
+//
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+//    private List<Subcategories> subcategories;
 
 	public int getCategoryId() {
 		return categoryId;
@@ -36,22 +36,22 @@ public class Categories {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-	public List<Subcategories> getSubcategories() {
-		return subcategories;
-	}
-
-	public void setSubcategories(List<Subcategories> subcategories) {
-		this.subcategories = subcategories;
-	}
+//
+//	public List<Product> getProducts() {
+//	return products;
+//}
+//
+//	public void setProducts(List<Product> products) {
+//	this.products = products;
+//	}
+//
+//	public List<Subcategories> getSubcategories() {
+//		return subcategories;
+//	}
+//
+//public void setSubcategories(List<Subcategories> subcategories) {
+//		this.subcategories = subcategories;
+//}
 
    
     
