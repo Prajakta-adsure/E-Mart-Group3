@@ -18,7 +18,7 @@ import com.example.entity.User;
 import com.example.service.CartService;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/api/cart")
 public class CartController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class CartController {
         cartService.removeProductFromCart(cartId);
     }
 
-    @GetMapping("/user")
+    @GetMapping("/user/{id}")
     public List<Cart> getUserCart(@RequestParam User user) {
         return cartService.getUserCart(user);
     }
