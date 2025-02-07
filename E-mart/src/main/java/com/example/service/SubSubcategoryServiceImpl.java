@@ -17,9 +17,14 @@ public class SubSubcategoryServiceImpl implements SubSubcategoryService{
         this.subSubcategoryRepository = subSubcategoryRepository;
     }
 
+    
     @Override
     public List<SubSubcategory> getAllSubSubcategories() {
         return subSubcategoryRepository.findAll(); // or your specific method to fetch the data
+    }
+    
+    public List<SubSubcategory> getSubSubcategoriesBySubcategory(int subcategoryId) {
+        return subSubcategoryRepository.findBySubcategoryId(subcategoryId);
     }
 
 }

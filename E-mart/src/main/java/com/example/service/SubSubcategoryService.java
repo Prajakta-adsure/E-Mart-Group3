@@ -8,4 +8,6 @@ import com.example.entity.SubSubcategory;
 
 public interface SubSubcategoryService {
 	List<SubSubcategory> getAllSubSubcategories();
+	List<SubSubcategory> getSubSubcategoriesBySubcategory(int subcategoryId);
+	
 }

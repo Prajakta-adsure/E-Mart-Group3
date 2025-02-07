@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,9 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.findByProductNameContainingIgnoreCase(productName);
     }
 
+    @Override
+    public Optional<Product> findByProductId(Long productId){
+        return productRepository.findByProductId(productId);  // Use 'productId' here
+    }
     
 }
