@@ -1,6 +1,7 @@
 package com.example.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -18,4 +19,7 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
 
 	    // Find products by product name (using 'productName' as it's defined in the entity)
 	    List<Product> findByProductNameContainingIgnoreCase(String productName);
+
+	    Optional<Product> findByProductId(Long productId);  // Use 'productId' instead of 'id'
+
 }
