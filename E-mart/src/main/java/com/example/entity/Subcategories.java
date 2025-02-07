@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +16,9 @@ public class Subcategories {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Categories category;
+
+    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SubSubcategory> subSubcategories;  // Add this relationship
 
 	public int getSubcategoryId() {
 		return subcategoryId;
@@ -39,7 +44,13 @@ public class Subcategories {
 		this.category = category;
 	}
 
-    
+	 public List<SubSubcategory> getSubSubcategories() {
+	        return subSubcategories;
+	    }
+
+	    public void setSubSubcategories(List<SubSubcategory> subSubcategories) {
+	        this.subSubcategories = subSubcategories;
+	    }
     
     
 }

@@ -2,8 +2,6 @@ package com.example.entity;
 
 
 
-import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +12,9 @@ public class Categories {
     private int categoryId;
 
     private String categoryName;
+    
+    @Column(name = "image_url")
+    private String imageUrl;
 
 //    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
 //    private List<Product> products;
@@ -36,6 +37,7 @@ public class Categories {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+	
 //
 //	public List<Product> getProducts() {
 //	return products;

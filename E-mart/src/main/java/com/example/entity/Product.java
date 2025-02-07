@@ -11,7 +11,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+    private Long productId;
 
     @Column(name = "product_name", nullable = false)
     private String productName;
@@ -19,7 +19,8 @@ public class Product {
     @Lob
     private String description;
 
-    private double price;
+    private BigDecimal price;
+
     private int stock;
 
     // Many-to-One relationship with Category
@@ -46,11 +47,11 @@ public class Product {
     private SubSubcategory subSubcategory;
 
     // Getters and Setters
-    public int getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -70,11 +71,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
